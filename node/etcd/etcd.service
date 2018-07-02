@@ -22,7 +22,7 @@ ExecStart=/usr/local/bin/etcd \
   --listen-client-urls ${ETCD_LISTEN_CLIENT_URLS},http://127.0.0.1:2379 \
   --advertise-client-urls ${ETCD_ADVERTISE_CLIENT_URLS} \
   --initial-cluster-token ${ETCD_INITIAL_CLUSTER_TOKEN} \
-  --initial-cluster etcd1=https://10.5.96.4:2380,etcd2=https://10.5.96.3:2380 \
+  --initial-cluster etcd1=https://10.10.223.180:2380,etcd2=https://10.10.223.181:2380 \
   --initial-cluster-state new \
   --data-dir=${ETCD_DATA_DIR}
 Restart=on-failure
