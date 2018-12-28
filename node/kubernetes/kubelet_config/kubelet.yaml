@@ -1,0 +1,47 @@
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+address: 192.168.1.81 
+port: 10250
+staticPodPath: /etc/kubernetes/manifests
+nodeStatusUpdateFrequency: 10s
+TLSCertFile: /etc/kubernetes/ssl/server.pem
+TLSPrivateKeyFile: /etc/kubernetes/ssl/server-key.pem
+authentication:
+  x509:
+    clientCAFile: "/etc/kubernetes/ssl/ca.pem"
+  webhook:
+    enabled: true
+    cacheTTL: "2m2s"
+  anonymous:
+    enabled: false
+authorization:
+  mode: "Webhook"
+  webhook:
+   { 
+      "CacheAuthorizedTTL": "5m0s",
+      "cacheUnauthorizedTTL": "30s"
+   }
+cgroupDriver: cgroupfs
+cgroupsPerQOS: true
+featureGates:
+  {
+     "RotateKubeletClientCertificate": true,
+     "RotateKubeletServerCertificate": true
+  }
+maxPods: 110
+failSwapOn: true
+EnforceNodeAllocatable: ""
+ClusterDNS: ["10.254.0.3"]
+ClusterDomain: cluster.local
+ResolverConfig: /etc/resolv.conf
+KubeReserved:
+  {
+    "cpu": "100m",
+    "memory":"256M"
+  }
+FeatureGates:
+  {
+    "PersistentLocalVolumes": false,
+    "VolumeScheduling": false,
+    "MountPropagation": false
+  }

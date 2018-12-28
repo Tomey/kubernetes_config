@@ -1,0 +1,7 @@
+KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOG_LEVEL="--v=4"
+KUBE_PROXY_ARGS=" \
+--bind-address=192.168.1.81 \
+--hostname-override=192.168.1.81 \
+--kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig \
+--cluster-cidr=10.254.0.0/16"

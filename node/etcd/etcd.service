@@ -1,3 +1,6 @@
+[Install]
+WantedBy=multi-user.target
+
 [Unit]
 Description=Etcd Server
 After=network.target
@@ -11,10 +14,10 @@ WorkingDirectory=/var/lib/etcd/
 EnvironmentFile=-/etc/etcd/etcd.conf
 ExecStart=/usr/local/bin/etcd \
   --name ${ETCD_NAME} \
-  --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
-  --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
-  --peer-cert-file=/etc/kubernetes/ssl/kubernetes.pem \
-  --peer-key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+  --cert-file=/etc/kubernetes/ssl/server.pem \
+  --key-file=/etc/kubernetes/ssl/server-key.pem \
+  --peer-cert-file=/etc/kubernetes/ssl/server.pem \
+  --peer-key-file=/etc/kubernetes/ssl/server-key.pem \
   --trusted-ca-file=/etc/kubernetes/ssl/ca.pem \
   --peer-trusted-ca-file=/etc/kubernetes/ssl/ca.pem \
   --initial-advertise-peer-urls ${ETCD_INITIAL_ADVERTISE_PEER_URLS} \
@@ -22,7 +25,7 @@ ExecStart=/usr/local/bin/etcd \
   --listen-client-urls ${ETCD_LISTEN_CLIENT_URLS},http://127.0.0.1:2379 \
   --advertise-client-urls ${ETCD_ADVERTISE_CLIENT_URLS} \
   --initial-cluster-token ${ETCD_INITIAL_CLUSTER_TOKEN} \
-  --initial-cluster etcd1=https://10.10.223.180:2380,etcd2=https://10.10.223.181:2380 \
+  --initial-cluster etcd1=https://192.168.1.80:2380,etcd2=https://192.168.1.81:2380,etcd3=https://192.168.1.82:2380 \
   --initial-cluster-state new \
   --data-dir=${ETCD_DATA_DIR}
 Restart=on-failure

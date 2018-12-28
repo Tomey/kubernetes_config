@@ -1,0 +1,34 @@
+KUBE_ALLOW_PRIV="--allow-privileged=true"
+KUBE_MASTER="--master=https://192.168.1.80:6443"
+KUBE_ETCD_SERVERS="--etcd-servers=https://192.168.1.80:2379,https://192.168.1.81:2379,https://192.168.1.82:2379"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOG_LEVEL="--v=0"
+KUBE_API_ADDRESS=" \
+--advertise-address=192.168.1.80 \
+--bind-address=192.168.1.80 \
+--insecure-bind-address=127.0.0.1"
+
+KUBE_API_PORT=" \
+--insecure-port=8080 \
+--secure-port=6443"
+
+KUBE_API_ARGS=" \
+--token-auth-file=/etc/kubernetes/token.csv  \
+--service-node-port-range=30000-32767 \
+--tls-cert-file=/etc/kubernetes/ssl/server.pem \
+--tls-private-key-file=/etc/kubernetes/ssl/server-key.pem \
+--client-ca-file=/etc/kubernetes/ssl/ca.pem \
+--service-account-key-file=/etc/kubernetes/ssl/ca-key.pem \
+--etcd-cafile=/etc/kubernetes/ssl/ca.pem \
+--etcd-certfile=/etc/kubernetes/ssl/server.pem \
+--etcd-keyfile=/etc/kubernetes/ssl/server-key.pem \
+--enable-swagger-ui=true \
+--authorization-mode=RBAC,Node \
+--apiserver-count=3 \
+--event-ttl=1h \
+--enable-bootstrap-token-auth=true \
+--kubelet-https=true \
+--enable-admission-plugins=ServiceAccount,NamespaceLifecycle,NamespaceExists,LimitRanger,ResourceQuota,SecurityContextDeny,NodeRestriction \
+--kubelet-client-certificate=/etc/kubernetes/ssl/server.pem  \
+--kubelet-client-key=/etc/kubernetes/ssl/server-key.pem"

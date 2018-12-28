@@ -1,0 +1,8 @@
+KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOG_LEVEL="--v=4"
+KUBELET_HOSTNAME="--hostname-override=192.168.1.81"
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.aliyuncs.com/archon/pause-amd64:3.0"
+KUBELET_ARGS=" \
+--cert-dir=/etc/kubernetes/ssl \
+--config=/etc/kubernetes/kubelet.yaml \
+--kubeconfig=/etc/kubernetes/bootstrap.kubeconfig"
